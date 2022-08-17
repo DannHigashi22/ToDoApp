@@ -1,0 +1,6 @@
+proyecto mvc to do list 
+- maquetar html y css
+- maquetar db  
+-crear login y registro de usuario
+- crud de notas.
+  
