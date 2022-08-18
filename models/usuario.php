@@ -64,6 +64,16 @@ class Usuario{
         }
     }
 
+    public function getUser(){
+        $sql="SELECT * FROM usuarios where email='{$this->getEmail()}' LIMIT 1;";
+        $login=$this->db->query($sql);
+        if ($login) {
+            return $login->fetch_object();
+        }else {
+            return false;
+        }
+    }
+
 
 }
 ?>

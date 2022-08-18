@@ -46,7 +46,7 @@ main{
 .header .logo{
     font-size: 30px;
     font-weight: 600;
-    text-shadow: 0px 0px 0px black, 1px 1px 0px black,2px 2px 0px black;
+    
 }
 .header .user{
     font-size: 18px;
@@ -121,7 +121,7 @@ main{
 #titleR{
     text-align: center;
     margin-top: 10px;
-    font-size: 18px;
+    font-size: 20px;
 }
 #subtitleR{
     margin: 5px 0;
@@ -153,6 +153,7 @@ main{
 }
 .flag-red{
     color: red;
+    font-size: 12px;
 }
 
 

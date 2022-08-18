@@ -1,12 +1,14 @@
 <?php
 require_once 'models/usuario.php';
 class UsuarioController {
-    public function index(){
-        echo 'index controlador usuario';
-    }
 
-    public function register(){
-        require_once 'views/usuario/register.phtml';
+    public function myAccount(){
+        if (isset($_SESSION['user'])) {
+            $user=$_SESSION['user'];
+            require_once 'views/usuario/myaccount.phtml';
+        }else {
+            require_once 'views/usuario/index.phtml';    
+        }
     }
 
     public function create(){
@@ -51,8 +53,43 @@ class UsuarioController {
             }
 
         }
+        header("location:".base_url."usuario/myAccount");
+    }
 
-        header("location:".base_url."usuario/register");
+    public function login(){
+        if (isset($_POST)) {
+            $email=isset($_POST['email'])? $_POST['email']:false;
+            $pass=isset($_POST['pass'])? $_POST['pass']:false;
+
+            $flag=array();
+            if (!$email || !filter_var($email,FILTER_VALIDATE_EMAIL)) {
+                $flag['email']="Email incorrecto, intente nuevamente";
+            }
+            if (!$pass || (strlen($pass)<4)) {
+                $flag['pass']="Ingrese Constraseña";
+            }
+            if (count($flag)==0) {
+                $user=new Usuario();
+                $user->setEmail($email);
+                $userLog=$user->getUser();
+                if ($userLog) {
+                    //verificar la pass
+                    $verify=password_verify($pass,$userLog->pass);
+                    if ($verify) {
+                        $_SESSION['user']=$userLog;
+                    }else {
+                        $flag['pass']="Contraseña incorrecto, intente nuevamente";
+                        $_SESSION['login']=$flag;
+                    }
+                }else {
+                    $flag['email']="Email incorrecto, intente nuevamente";
+                    $_SESSION['login']=$flag;
+                }
+            }else {
+                $_SESSION['login']=$flag;
+            }
+        }
+        header("location:".base_url.'usuario/myAccount');
     }
     
 }

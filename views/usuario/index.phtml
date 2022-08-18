@@ -1,8 +1,8 @@
-<h3 id="titleR">Bienvenido a ToDo APP</h3>
+<h2 id="titleR">Bienvenido a ToDo APP</h2>
 <div class="form">
     <form action="<?=base_url?>usuario/create" method="POST">
     <?=isset($_SESSION['register']['create'])?'<p>'.$_SESSION['register']['create'].'</p>':''?>
-        <h4>Registrate</h4>
+        <h3>Registrate</h3>
         <hr>
         <label for="nombre">Nombre</label><br>
         <input type="text" name="nombre"><br>
@@ -25,14 +25,17 @@
     <?php Utils::deleteFlag('register');?>
 </div><br>
 <div class="form">
-    <form action="" method="post">
-        <h4>Inicia sesion</h4><hr>
+    <form action="<?=base_url?>usuario/login" method="post">
+        <h3>Iniciar sesion</h3><hr>
         <label for="">Email</label><br>
         <input type="email" name="email"><br>
+        <?=Utils::showFlagFailed('login','email');?>
 
         <label for="pass">Contraseña</label><br>
         <input type="password" name="pass"><br>
+        <?=Utils::showFlagFailed('login','pass');?>
 
         <input type="submit" value="Enviar">
     </form>
+    <?php Utils::deleteFlag('login');?>
 </div>
