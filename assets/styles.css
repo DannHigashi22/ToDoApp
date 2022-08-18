@@ -151,6 +151,9 @@ main{
 .form hr{
     margin-bottom: 5px;
 }
+.flag-red{
+    color: red;
+}
 
 
 /*footer*/

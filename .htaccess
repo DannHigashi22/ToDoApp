@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+##activar rewrite
+RewriteEngine on
+ErrorDocument 404 http://todoapp.dev.com/Error/index
+
+##condiciones para rewrite
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+##reglas de rescrituras
+RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2
+</IfModule> 

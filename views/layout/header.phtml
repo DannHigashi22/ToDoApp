@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>To Do app</title>
-    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="<?=base_url?>assets/styles.css">
 </head>
 <body>
     <main>
         <header class="header">
             <a class="logo" href="index.php">ToDo App</a>
-            <a class="user" href="?controller=usuario&action=register">Registrate</a>
+            <a class="user" href="<?=base_url?>usuario/register">Registrate</a>
             <form action="?controller=usuario" method="post">
                 <input type="text" placeholder="Añade tu nueva ToDo" name="titulo" disable>
                 <input type="submit" value="+">
