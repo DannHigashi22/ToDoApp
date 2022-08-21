@@ -72,7 +72,7 @@ class UsuarioController {
                 $user=new Usuario();
                 $user->setEmail($email);
                 $userLog=$user->getUser();
-                if ($userLog) {
+                if (is_object($userLog)) {
                     //verificar la pass
                     $verify=password_verify($pass,$userLog->pass);
                     if ($verify) {
@@ -91,6 +91,61 @@ class UsuarioController {
         }
         header("location:".base_url.'usuario/myAccount');
     }
+
+    public function logout(){
+        Utils::isLogin();
+        if (isset($_SESSION['user'])) {
+            $_SESSION['user']=null;
+        }
+        header('location:'.base_url);
+    }
     
+    public function edit(){
+        Utils::isLogin();
+        $user=$_SESSION['user'];
+        require_once 'views/usuario/edit.phtml';
+    }
+    public function update(){
+        if (isset($_POST)) {
+            $nombre=isset($_POST['nombre'])? $_POST['nombre']:false;
+            $apellidos=isset($_POST['apellidos'])? $_POST['apellidos']:false;
+            $pass=isset($_POST['pass'])? $_POST['pass']:false;
+            
+            $flag=array();
+            if (!$nombre || preg_match("/[0-9]/",$nombre)) {
+                $flag['nombre']="Campo incorrecto, intente nuevamente";
+            }
+            if (!$apellidos || preg_match("/[0-9]/",$apellidos)) {
+                $flag['apellidos']="Campo incorrecto, intente nuevamente";
+            }
+            if (!$pass || (strlen($pass)<4)) {
+                $flag['pass']="Confirma tu contraseña para actualizar datos";
+            }
+
+            if (count($flag)==0) {
+                $user=new Usuario();
+                $user->setId($_SESSION['user']->id);
+                $user->setNombre($nombre);
+                $user->setApellidos($apellidos);
+                $user->setEmail($_SESSION['user']->email);
+                //hash pass
+                $passHash=password_hash($pass,PASSWORD_BCRYPT,['cost'=>4]);
+                //fin de hash
+                $user->setPass($passHash);
+                $update=$user->update();
+                if ($update) {
+                    $_SESSION['update']['user']="Cuenta actualizada correctamente";
+                    $_SESSION['user']=$user->getUser();
+                }else {
+                    $_SESSION['update']['user']="Fallo al actualizar usuario";
+                }
+
+            }else {
+                $_SESSION['update']=$flag;
+            }
+
+        }
+        header("location:".base_url."usuario/edit");
+    }
 }
 ?>

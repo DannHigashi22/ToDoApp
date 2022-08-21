@@ -1,2 +1,13 @@
-<h2>Mi Cuenta</h2>
-<?php var_dump($user);?>
+<h2 class="titleh2">Mi Cuenta</h2>
+<div class="box-user">
+    <h3>Datos Personales</h3>
+    <p>Nombre: <?=$_SESSION['user']->nombre?></p><br>
+    <p>Apellidos: <?=$_SESSION['user']->apellidos?></p><br>
+    <p>Email: <?=$_SESSION['user']->email?></p>
+
+    <ul>
+        <li class="button-marginB"><a href="<?=base_url?>usuario/edit" class="button" >Editar Perfil</a></li>
+        <li class="button-marginB"><a href="<?=base_url?>usuario/logout" class="button">Cerrar sesion</a></li>
+    </ul>
+</div>
+

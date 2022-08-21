@@ -15,6 +15,17 @@ class Utils{
         return $result;
     }
 
+    public static function isLogin(){
+        if (!isset($_SESSION['user'])) {
+            header('location:'.base_url);
+        }
+    }
+
+    /*public static function howTask(){
+        $user=$_SESSION['user']->id;
+        $date=date('Y-m-d');    
+    }*/
+
 
 }
 ?>

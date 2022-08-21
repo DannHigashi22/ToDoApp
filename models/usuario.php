@@ -74,6 +74,18 @@ class Usuario{
         }
     }
 
+    public function update(){
+        $sql="UPDATE usuarios SET nombre='{$this->getNombre()}', apellidos='{$this->getApellidos()}', pass='{$this->getPass()}' where id={$this->getId()}";
+        $save=$this->db->query($sql);
+
+        if ($save) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
 
 }
 ?>

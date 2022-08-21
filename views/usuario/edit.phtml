@@ -1,0 +1,27 @@
+<h2 class="titleh2">Mi Cuenta</h2>
+<div class="form">
+    <form action="<?=base_url?>usuario/update" method="POST">
+    <?=isset($_SESSION['update']['user'])?'<p>'.$_SESSION['update']['user'].'</p>':''?>
+        <h3>Datos Personales</h3>
+        <hr>
+        <label for="nombre">Nombre</label><br>
+        <input type="text" name="nombre" value="<?=$user->nombre?>"><br>
+        <?=Utils::showFlagFailed('update','nombre');?>
+
+        <label for="apellidos">Apellidos</label><br>
+        <input type="text" name="apellidos" value="<?=$user->apellidos?>"><br>
+        <?=Utils::showFlagFailed('update','apellidos');?>
+        
+        <label for="">Email</label><br>
+        <input type="email" name="email" value="<?=$user->email?>" disabled><br>
+        <p>Para cambiar este dato llamar a nuestro callcenter</p><br>
+
+        <label for="pass">Contraseña</label><br>
+        <input type="password" name="pass"><br>
+        <?=Utils::showFlagFailed('update','pass');?>
+
+        <input type="submit" value="Enviar">
+    </form>
+    <?php Utils::deleteFlag('update');?>
+</div>
+
