@@ -10,7 +10,7 @@ require_once 'views/layout/header.phtml';
 if (isset($_GET['controller'])) {
     $nameController=$_GET['controller'].'Controller';
 }else{
-    $nameController='NotaController';
+    $nameController='UsuarioController';
 }
 
 if (isset($_GET['action'])) {

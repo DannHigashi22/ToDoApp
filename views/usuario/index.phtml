@@ -1,41 +1,12 @@
-<h2 class="titleh2">Bienvenido a ToDo APP</h2>
-<div class="form">
-    <form action="<?=base_url?>usuario/create" method="POST">
-    <?=isset($_SESSION['register']['create'])?'<p>'.$_SESSION['register']['create'].'</p>':''?>
-        <h3>Registrate</h3>
-        <hr>
-        <label for="nombre">Nombre</label><br>
-        <input type="text" name="nombre"><br>
-        <?=Utils::showFlagFailed('register','nombre');?>
-
-        <label for="apellidos">Apellidos</label><br>
-        <input type="text" name="apellidos"><br>
-        <?=Utils::showFlagFailed('register','apellidos');?>
-        
-        <label for="">Email</label><br>
-        <input type="email" name="email"><br>
-        <?=Utils::showFlagFailed('register','email');?>
-
-        <label for="pass">Contraseña</label><br>
-        <input type="password" name="pass"><br>
-        <?=Utils::showFlagFailed('register','pass');?>
-
-        <input type="submit" value="Enviar">
-    </form>
-    <?php Utils::deleteFlag('register');?>
-</div><br>
-<div class="form">
-    <form action="<?=base_url?>usuario/login" method="post">
-        <h3>Iniciar sesion</h3><hr>
-        <label for="">Email</label><br>
-        <input type="email" name="email"><br>
-        <?=Utils::showFlagFailed('login','email');?>
-
-        <label for="pass">Contraseña</label><br>
-        <input type="password" name="pass"><br>
-        <?=Utils::showFlagFailed('login','pass');?>
-
-        <input type="submit" value="Enviar">
-    </form>
-    <?php Utils::deleteFlag('login');?>
+<div class="container-img">
+    <img class="img-index" src="<?=base_url?>assets/img/todo.jpg" alt="Imagen promocional de todo">
+</div>
+<div class="index-title">
+    <p>To Do APP</p>
+    <h4></h4>
+</div>
+<div class="index-p">
+    <p>To Do APP, es tu app que te ayuda a gestinar tus tareas del dia a dia y tener un control de tus metas.</p>
+    <p>Comienza ahora, Registrate o inicia sesion</p>
+    <p id="a-button"><a class="button" href="<?=base_url?>usuario/myAccount">Entrar</a></p>
 </div>
