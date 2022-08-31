@@ -2,7 +2,7 @@
 <h3 id="title"><?=$user->nombre.''.$user->apellidos?> estas son tus tareas:</h3>
 <ul class="todo">
     <?php while ($nota=$notasToday->fetch_object()):?>
-        <li><a href=""><?=substr($nota->titulo,0,35)?>...</a><a class="btn-todo" href="">✓ Listo</a></li>
+        <li><a href="<?=base_url?>nota/detail&id=<?=$nota->id?>"><?=substr($nota->titulo,0,35)?>...</a><a class="btn-todo" href="<?=base_url?>Nota/check&id=<?=$nota->id?>">✓ Listo</a></li>
     <?php endwhile;?>
     
 </ul>

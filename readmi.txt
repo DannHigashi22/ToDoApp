@@ -2,5 +2,8 @@ proyecto mvc to do list
 - maquetar html y css (listo)
 - maquetar db  (listo)
 -crear login y registro de usuario (listo)
-- crud de notas.
+- crud de notas(listo)
+- mostrar solo los pendientes
+-editar to do
+
   

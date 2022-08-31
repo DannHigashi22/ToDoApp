@@ -1,0 +1,16 @@
+<h2 class="titleh2">Detalle de ToDo</h2>
+<div class="form">
+    <p class="detail">Titulo: <?=$nota->titulo?></p>
+    <p class="detail">Descripcion: <?=$nota->descripcion?></p>
+    <p class="detail">Estado: <?=$nota->estado?></p>
+    <p class="detail">Fecha: <?=$nota->fecha?></p>
+    <p class="detail">Hora: <?=$nota->hora?></p>
+
+    
+</div>
+<ul class="ul-detail">
+    <li class="li-detail">
+        <a href="<?=base_url?>nota/edit&id=<?=$nota->id?>" class="button" >Editar ToDo</a>
+        <a href="<?=base_url?>nota/delete&id=<?=$nota->id?>" class="button red">Borrar ToDo</a>
+    </li>
+</ul>

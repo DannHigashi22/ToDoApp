@@ -1,0 +1,21 @@
+<h2 class="titleh2">Editar de ToDo</h2>
+<div class="form">
+    <form action="" method="post">
+        <label for="">Titulo</label><br>
+        <input type="text" name="" value="<?=$nota->titulo?>"><br>
+
+        <label for="">Descripcion</label><br>
+        <textarea name="descripcion" cols="30" rows="10"><?=$nota->descripcion?></textarea><br>
+
+        <label for="">Estado</label><br>
+        <input type="text" name="" value="<?=$nota->estado?>"><br>
+
+        <label for="">Fecha</label><br>
+        <input type="datetime" name="" value="<?=$nota->fecha?>"><br>
+
+        <label for="">Hora</label><br>
+        <input type="time" name="" value="<?=$nota->hora?>"><br>
+
+        <input type="submit" class="button" value="Actualizar">
+    </form>
+</div>

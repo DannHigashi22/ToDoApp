@@ -17,7 +17,7 @@ class NotaController{
 
     public function create(){
         Utils::isLogin();
-        if ($_POST) {
+        if (isset($_POST)) {
             $user=$_SESSION['user'];
             $titulo=isset($_POST['titulo'])? $_POST['titulo']:false;
 
@@ -34,7 +34,68 @@ class NotaController{
             }
 
         }
-        return header('location:'.base_url.'nota/index');
+        return header('location:'.base_url.'Nota/');
+    }
+
+    public function check(){
+        Utils::isLogin();
+        if (isset($_GET['id'])) {
+            $id=$_GET['id'];
+            $user=$_SESSION['user'];
+            $nota=new Nota();
+            $nota->setId($id);
+            $nota->setUsuario_id($user->id);
+            $nota->setEstado('realizado');
+            $nota=$nota->checkNote();
+        }
+        header('location:'.base_url.'Nota/');
+    }
+
+    public function detail(){
+        Utils::isLogin();
+        if (isset($_GET['id'])) {
+            $id=$_GET['id'];
+            $nota=new Nota();
+            $nota->setId($id);
+            $nota=$nota->getForId();
+            if ($nota) {
+                require_once 'views/nota/detail.phtml';
+            }else {
+                header('location:'.base_url.'Nota/');
+            }
+        }
+    }
+
+    public function edit(){
+        Utils::isLogin();
+        if (isset($_GET['id'])) {
+            $id=$_GET['id'];
+            $nota=new Nota();
+            $nota->setId($id);
+            $nota=$nota->getForId();
+            if ($nota) {
+                require_once 'views/nota/edit.phtml';
+            }else {
+                header('location:'.base_url.'Nota/');
+            }
+        }
+
+    }
+    public function update(){
+
+    }
+
+    public function delete(){
+        Utils::isLogin();
+        if (isset($_GET['id'])) {
+            $id=$_GET['id'];
+            $user=$_SESSION['user'];
+            $nota=new Nota();
+            $nota->setId($id);
+            $nota->setUsuario_id($user->id);
+            $delete=$nota->delete();
+        }
+        header('location'.base_url.'nota/index');
     }
 }
 ?>

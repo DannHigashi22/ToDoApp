@@ -72,6 +72,16 @@ class Nota{
         }
     }
 
+    public function delete(){
+        $sql="delete * FROM notas where id={$this->getId()} AND usuario_id={$this->getUsuario_id()} ;";
+        $nota=$this->db->query($sql);
+        if ($nota) {
+            return $notas;
+        }else {
+            return false;
+        }
+    }
+
     public function getAll(){
         $sql="SELECT * FROM notas where usuario_id={$this->getUsuario_id()} AND fecha='{$this->getFecha()}'; ";
         $notas=$this->db->query($sql);
@@ -81,8 +91,19 @@ class Nota{
             return false;
         }
     }
+
+    public function getForId(){
+        $sql="SELECT * FROM notas where id={$this->getId()};";
+        $notas=$this->db->query($sql);
+        if ($notas) {
+            return $notas->fetch_object();
+        }else {
+            return false;
+        }
+    }
+
     public function checkNote(){
-        $sql="UPDATE notas SET estado='{$this->getEstado()}' where id={$this->getId()}";
+        $sql="UPDATE notas SET estado='{$this->getEstado()}' where id={$this->getId()} AND usuario_id={$this->getUsuario_id()}";
         $save=$this->db->query($sql);
 
         if ($save) {

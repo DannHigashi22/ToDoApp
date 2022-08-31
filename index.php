@@ -7,15 +7,16 @@ require_once 'helper/utils.php';
 require_once 'views/layout/header.phtml';
 
 //controllador frontal
-if (isset($_GET['controller'])) {
+
+if (!empty($_GET['controller'])) {
     $nameController=$_GET['controller'].'Controller';
 }else{
     $nameController='UsuarioController';
 }
 
-if (isset($_GET['action'])) {
+if (!empty($_GET['action'])) {
     $actionController=$_GET['action'];
-}else {
+}else{
     $actionController="index";
 }
 

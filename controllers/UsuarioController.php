@@ -92,7 +92,7 @@ class UsuarioController {
                 $_SESSION['login']=$flag;
             }
         }
-        header("location:".base_url.'usuario/myAccount');
+        header("location:".base_url.'nota/index');
     }
 
     public function logout(){
