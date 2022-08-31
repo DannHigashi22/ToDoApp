@@ -5,14 +5,13 @@ class UsuarioController {
     public function index(){
         require_once 'views/usuario/index.phtml';
     }
-
     public function myAccount(){
-        if (isset($_SESSION['user'])) {
-            $user=$_SESSION['user'];
-            require_once 'views/usuario/myaccount.phtml';
-        }else {
-            require_once 'views/usuario/user.phtml';    
-        }
+        Utils::isLogin();
+        require_once 'views/usuario/myaccount.phtml';    
+    }
+
+    public function enter(){
+        require_once 'views/usuario/user.phtml';
     }
 
     public function create(){

@@ -31,7 +31,7 @@ class Nota{
         return $this->titulo;
     }
     public function setTitulo($titulo){
-        $this->titulo=$titulo;
+        $this->titulo=$this->db->real_escape_string($titulo);
     }
 
     public function getDescripcion(){
@@ -62,6 +62,35 @@ class Nota{
         $this->hora=$hora;
     }
 
+    public function create(){
+        $sql="INSERT INTO notas values(null,{$this->getUsuario_id()},'{$this->getTitulo()}',null,'pendiente',curdate(),curtime());";
+        $save=$this->db->query($sql);
+        if ($save) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public function getAll(){
+        $sql="SELECT * FROM notas where usuario_id={$this->getUsuario_id()} AND fecha='{$this->getFecha()}'; ";
+        $notas=$this->db->query($sql);
+        if ($notas) {
+            return $notas;
+        }else {
+            return false;
+        }
+    }
+    public function checkNote(){
+        $sql="UPDATE notas SET estado='{$this->getEstado()}' where id={$this->getId()}";
+        $save=$this->db->query($sql);
+
+        if ($save) {
+            return true;
+        }else {
+            return false;
+        }
+    }
     
 }
 ?>

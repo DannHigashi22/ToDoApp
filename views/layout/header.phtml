@@ -10,9 +10,10 @@
         <header class="header">
             <a class="logo" href="<?=base_url?>nota/index">ToDo App</a>
             <a class="user" href="<?=base_url?>usuario/myAccount">Mi Cuenta</a>
-            <form action="<?=base_url?>usuario" method="post">
-                <input type="text" placeholder="Añade tu nueva ToDo" name="titulo" disable>
-                <input type="submit" value="+">
+            <form action="<?=base_url?>nota/create" method="post">
+                <input type="text" placeholder="<?=isset($_SESSION['user'])? "Añade tu nueva ToDo" : "Inicia sesion para añadir"?>" name="titulo" <?=isset($_SESSION['user'])?'' :'disabled'?>>
+                <input type="submit" value="+" <?=isset($_SESSION['user'])?'' :'disabled'?>>
             </form>
+            <div class="clear-fix"></div>
         </header>
         <section class="container">

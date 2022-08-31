@@ -17,7 +17,7 @@ class Utils{
 
     public static function isLogin(){
         if (!isset($_SESSION['user'])) {
-            header('location:'.base_url);
+            header('location:'.base_url.'usuario/index');
         }
     }
 

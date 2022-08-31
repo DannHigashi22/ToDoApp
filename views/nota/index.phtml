@@ -1,7 +1,12 @@
-
-            <h3 id="title">Dann Higashi estas son tus tareas:</h3>
-            <ul class="todo">
-                <li><a href="">Hacer los deberes</a></li>
-                <li><a href="">Completar las tareas previas</a></li>
-                <li><a href="">Crear un repositorio</a></li>
-            </ul>
+<?php if($notasToday->num_rows>=1):?>
+<h3 id="title"><?=$user->nombre.''.$user->apellidos?> estas son tus tareas:</h3>
+<ul class="todo">
+    <?php while ($nota=$notasToday->fetch_object()):?>
+        <li><a href=""><?=substr($nota->titulo,0,35)?>...</a><a class="btn-todo" href="">✓ Listo</a></li>
+    <?php endwhile;?>
+    
+</ul>
+<?php elseif($notasToday->num_rows == 0):?>
+    <br>
+    <h3>Sin tareas para el dia de hoy, puede crear en la barra superior</h3>
+<?php endif;?>
