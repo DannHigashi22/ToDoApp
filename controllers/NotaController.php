@@ -11,8 +11,18 @@ class NotaController{
         $notas_User->setUsuario_id($user->id);
         $notas_User->setFecha($today);
 
-        $notasToday=$notas_User->getAll();
+        $notasToday=$notas_User->getPending();
         require_once 'views/nota/index.phtml';
+    }
+
+    public function all(){
+        Utils::isLogin();
+        $user=$_SESSION['user'];
+        $allToDo=new Nota();
+        $allToDo->setUsuario_id($user->id);
+        $all=$allToDo->getAll();
+
+        require_once 'views/nota/all.phtml';
     }
 
     public function create(){
@@ -45,10 +55,23 @@ class NotaController{
             $nota=new Nota();
             $nota->setId($id);
             $nota->setUsuario_id($user->id);
-            $nota->setEstado('realizado');
+            $nota->setEstado('done');
             $nota=$nota->checkNote();
         }
         header('location:'.base_url.'Nota/');
+    }
+
+    public function checkall(){
+        Utils::isLogin();
+            $user=$_SESSION['user'];
+            date_default_timezone_set('America/Santiago');
+            $today=date('Y-m-d');
+            $nota=new Nota();
+            $nota->setUsuario_id($user->id);
+            $nota->setEstado('done');
+            $nota->setFecha($today);
+            $nota=$nota->checkAllNotes();
+            header('location:'.base_url.'Nota/');
     }
 
     public function detail(){

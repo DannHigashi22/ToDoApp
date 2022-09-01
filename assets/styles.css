@@ -38,6 +38,7 @@ main{
     font-size: 18px;
     padding: 2px;
     width: max-content;
+    cursor: pointer;
 }
 .button-marginB{
     margin-bottom: 10px;
@@ -144,9 +145,10 @@ ul{
 }
 
 /*to-do*/
-.todo ul{
+.todo{
     list-style: none;
-    overflow-y: auto;
+    height: 520px;
+    overflow-y: scroll;
 }
 .todo li{
     background: #f2f2f2;

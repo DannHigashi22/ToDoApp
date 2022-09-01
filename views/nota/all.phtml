@@ -1,9 +1,9 @@
-<?php if($notasToday->num_rows>=1):?>
+<?php if($all->num_rows>=1):?>
 <h3 id="title"><?=$user->nombre.''.$user->apellidos?> estas son tus tareas:</h3>
 <ul class="todo">
-    <?php while ($nota=$notasToday->fetch_object()):?>
+    <?php while ($nota=$all->fetch_object()):?>
         <li><a href="<?=base_url?>nota/detail&id=<?=$nota->id?>">
-            <?=($nota->estado=='done')?"<del>".substr($nota->titulo,0,30)."</del>..." : substr($nota->titulo,0,30)?>
+            <?=($nota->estado=='done')?"<del>".substr($nota->titulo,0,30)."</del>..." : substr($nota->titulo,0,30)."..."?>
             </a>
             <a class="btn-todo" <?=($nota->estado=='done')? "href=''>✓ Realizado </a> " : "href='check&id=$nota->id'>✓ Check</a>" ?>
         </li>

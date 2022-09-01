@@ -21,10 +21,34 @@ class Utils{
         }
     }
 
-    /*public static function howTask(){
-        $user=$_SESSION['user']->id;
-        $date=date('Y-m-d');    
-    }*/
+    public static function showState($state){
+        switch ($state) {
+            case 'done':
+                $result='Realizado';
+                break;
+            default:
+                $result="Pendiente";
+                break;
+        }
+        return $result;
+    }
+
+    public static function howTask(){
+        if (isset($_SESSION['user'])) {
+            require_once 'models/nota.php';
+            $user=$_SESSION['user']->id;
+            date_default_timezone_set('America/Santiago');
+            $today=date('Y-m-d');
+            $task=new Nota();
+            $task->setUsuario_id($user);
+            $task->setFecha($today);
+            $task=$task->getPending();
+            $result='Tienes '.$task->num_rows.' To Do';
+        }else {
+            $result='Entra para saber mas';
+        }
+        return $result;
+    }
 
 
 }

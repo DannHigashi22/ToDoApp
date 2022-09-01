@@ -1,11 +1,11 @@
 </section>
         <footer class="footer">
             <div class="information">
-                <h4>Tienes 5 To Do </h4>
+                <h4><?=Utils::howTask();?></h4>
             </div>
             <div class="action">
-                <a class="button" href="">Realizar todas</a>
-                <a class="button" href="">Ver todas</a>
+                <a class="button" href="<?=base_url.'nota/checkall'?>">Realizar todas</a>
+                <a class="button" href="<?=base_url.'nota/all'?>">Ver todas</a>
             </div>
             <div class="copy"><p>Realizado por Dann Higashi &COPY</p></div>
         </footer>

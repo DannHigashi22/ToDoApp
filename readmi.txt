@@ -3,7 +3,12 @@ proyecto mvc to do list
 - maquetar db  (listo)
 -crear login y registro de usuario (listo)
 - crud de notas(listo)
-- mostrar solo los pendientes
--editar to do
+- mostra si estan pendientes o realizados(listo)
+- ver todos(listo)
+- realizar todos (listo)
+- how task (listo)
+- editar to do
+- mostrar solo los pendientes(listo)
+
 
   

@@ -63,13 +63,17 @@ class Nota{
     }
 
     public function create(){
-        $sql="INSERT INTO notas values(null,{$this->getUsuario_id()},'{$this->getTitulo()}',null,'pendiente',curdate(),curtime());";
+        $sql="INSERT INTO notas values(null,{$this->getUsuario_id()},'{$this->getTitulo()}',null,'pending',curdate(),curtime());";
         $save=$this->db->query($sql);
         if ($save) {
             return true;
         }else {
             return false;
         }
+    }
+
+    public function update(){
+
     }
 
     public function delete(){
@@ -83,7 +87,17 @@ class Nota{
     }
 
     public function getAll(){
-        $sql="SELECT * FROM notas where usuario_id={$this->getUsuario_id()} AND fecha='{$this->getFecha()}'; ";
+        $sql="SELECT * FROM notas WHERE usuario_id={$this->getUsuario_id()} ORDER BY id desc";
+        $notas=$this->db->query($sql);
+        if ($notas) {
+            return $notas;
+        }else {
+            return false;
+        }
+    }
+
+    public function getPending(){
+        $sql="SELECT * FROM notas where usuario_id={$this->getUsuario_id()} AND fecha='{$this->getFecha()}' AND estado='pending'; ";
         $notas=$this->db->query($sql);
         if ($notas) {
             return $notas;
@@ -113,5 +127,15 @@ class Nota{
         }
     }
     
+    public function checkAllNotes(){
+        $sql="UPDATE notas SET estado='{$this->getEstado()}' where fecha='{$this->getFecha()}' AND usuario_id={$this->getUsuario_id()}";
+        $save=$this->db->query($sql);
+
+        if ($save) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
 ?>

@@ -2,7 +2,7 @@
 <div class="form">
     <p class="detail">Titulo: <?=$nota->titulo?></p>
     <p class="detail">Descripcion: <?=$nota->descripcion?></p>
-    <p class="detail">Estado: <?=$nota->estado?></p>
+    <p class="detail">Estado: <?=Utils::showState($nota->estado);?></p>
     <p class="detail">Fecha: <?=$nota->fecha?></p>
     <p class="detail">Hora: <?=$nota->hora?></p>
 
