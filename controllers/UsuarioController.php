@@ -80,19 +80,22 @@ class UsuarioController {
                     $verify=password_verify($pass,$userLog->pass);
                     if ($verify) {
                         $_SESSION['user']=$userLog;
+                        $redirect=base_url.'Nota/';
                     }else {
                         $flag['pass']="Contraseña incorrecto, intente nuevamente";
                         $_SESSION['login']=$flag;
+                        $redirect=base_url.'usuario/enter';
                     }
                 }else {
                     $flag['email']="Email incorrecto, intente nuevamente";
                     $_SESSION['login']=$flag;
+                    $redirect=base_url.'usuario/enter';
                 }
             }else {
                 $_SESSION['login']=$flag;
             }
         }
-        header("location:".base_url.'nota/index');
+        header("location:".$redirect);
     }
 
     public function logout(){

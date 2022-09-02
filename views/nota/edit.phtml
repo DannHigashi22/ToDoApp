@@ -1,26 +1,30 @@
 <h2 class="titleh2">Editar de ToDo</h2>
 <div class="form">
     <form action="<?=base_url?>nota/update" method="post">
+        <?=isset($_SESSION['update']['nota'])?'<p>'.$_SESSION['update']['nota'].'</p>':''?>
         <br>
-        <label for="">Titulo</label><br>
-        <input type="text" name="" value="<?=$nota->titulo?>"><br>
+        <label for="titulo">Titulo</label><br>
+        <input type="text" name="titulo" value="<?=$nota->titulo?>"><br>
+        <?=Utils::showFlagFailed('update','titulo');?>
 
-        <label for="">Descripcion</label><br>
+        <label for="descripcion">Descripcion</label><br>
         <textarea name="descripcion" cols="50" rows="10"><?=$nota->descripcion?></textarea><br>
 
-        <label for="">Estado</label><br>
+        <label for="estado">Estado</label><br>
         <select name="estado">
             <option value="done" <?=$nota->estado=='done'? 'selected':'' ?> >Realizado</option>
             <option value="pending" <?=$nota->estado=='pending'? 'selected':'' ?>>Pendiente</option>
         </select><br>
+        <?=Utils::showFlagFailed('update','estado');?>
 
-        <label for="">Fecha</label><br>
-        <input type="datetime" name="" value="<?=$nota->fecha?>"><br>
+        <label for="fecha">Fecha</label><br>
+        <input type="date" name="fecha" value="<?=$nota->fecha?>"><br>
+        <?=Utils::showFlagFailed('update','fecha');?>
 
-        <label for="">Hora</label><br>
-        <input type="time" name="" value="<?=$nota->hora?>"><br>
+        <label for="hora">Hora de creacion</label><p><?=$nota->hora?></p><br>
 
         <input type="hidden" name="id" value="<?=$nota->id?>">
         <input type="submit" class="button" value="Actualizar">
     </form>
+    <?php Utils::deleteFlag('update');?>
 </div>

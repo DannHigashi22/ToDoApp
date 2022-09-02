@@ -38,7 +38,7 @@ class Nota{
         return $this->descripcion;
     }
     public function setDescripcion($descripcion){
-        $this->descripcion=$descripcion;
+        $this->descripcion=$this->db->real_escape_string($descripcion);
     }
 
     public function getEstado(){
@@ -73,7 +73,15 @@ class Nota{
     }
 
     public function update(){
-
+        $sql="UPDATE notas SET titulo='{$this->getTitulo()}', descripcion='{$this->getDescripcion()}', estado='{$this->getEstado()}', fecha='{$this->getFecha()}' 
+        where id={$this->getId()} AND usuario_id={$this->getUsuario_id()} ; ";
+        $update=$this->db->query($sql);
+        
+        if ($update) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public function delete(){

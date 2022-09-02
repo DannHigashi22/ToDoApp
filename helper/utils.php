@@ -50,6 +50,15 @@ class Utils{
         return $result;
     }
 
+    public static function validateDate($date){
+        $valores=explode('-',$date);
+        if (count($valores)==3 && checkdate($valores[1],$valores[2],$valores[0])) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 
 }
 ?>
