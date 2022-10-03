@@ -88,7 +88,7 @@ class Nota{
         $sql="delete * FROM notas where id={$this->getId()} AND usuario_id={$this->getUsuario_id()} ;";
         $nota=$this->db->query($sql);
         if ($nota) {
-            return $notas;
+            return $nota;
         }else {
             return false;
         }
